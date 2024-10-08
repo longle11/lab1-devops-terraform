@@ -12,8 +12,7 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.SC_AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{secrets.SC_AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: ${{ secrets.SC_AWS_REGION }}
-      WORKING_DIRECTORY: "Terraform/modules/environments/staging"
-
+      WORKING_DIRECTORY: "./Terraform/modules/environments/staging"
     runs-on: ubuntu-latest
     # Checkout the repository to the GitHub Actions runner
     steps:
