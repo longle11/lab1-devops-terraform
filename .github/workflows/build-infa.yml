@@ -19,23 +19,26 @@ jobs:
       - name: "checkout"
         uses: "actions/checkout@v3"
 
-      - name: Setup Terraform with specified version on the runner
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: 1.3.0
+      - name: List files in repository
+        run: ls -la
 
-      - name: Terraform init
-        run: terraform init
-        working-directory: ${{ env.WORKING_DIRECTORY }} 
+      # - name: Setup Terraform with specified version on the runner
+      #   uses: hashicorp/setup-terraform@v2
+      #   with:
+      #     terraform_version: 1.3.0
 
-      - name: Terraform validate
-        run: terraform validate
-        working-directory: ${{ env.WORKING_DIRECTORY }} 
+      # - name: Terraform init
+      #   run: terraform init
+      #   working-directory: ${{ env.WORKING_DIRECTORY }} 
 
-      - name: Terraform plan
-        run: terraform plan
-        working-directory: ${{ env.WORKING_DIRECTORY }} 
+      # - name: Terraform validate
+      #   run: terraform validate
+      #   working-directory: ${{ env.WORKING_DIRECTORY }} 
 
-      - name: Terraform apply
-        run: terraform apply -auto-approve
-        working-directory: ${{ env.WORKING_DIRECTORY }} 
+      # - name: Terraform plan
+      #   run: terraform plan
+      #   working-directory: ${{ env.WORKING_DIRECTORY }} 
+
+      # - name: Terraform apply
+      #   run: terraform apply -auto-approve
+      #   working-directory: ${{ env.WORKING_DIRECTORY }} 
