@@ -25,7 +25,7 @@ resource "aws_subnet" "vpc_public_subnet" {
   cidr_block              = each.value.cidr_block
   map_public_ip_on_launch = var.map_public_ip_on_launch
   tags = {
-    "Name"      = format("%s%s%s", "public-subnet-${each.key}"),
+    "Name"      = each.key,
     Environment = var.environment,
     CreatedBy   = var.createdBy
   }
@@ -132,7 +132,7 @@ resource "aws_subnet" "vpc_private_subnet" {
   enable_resource_name_dns_a_record_on_launch = var.private_subnets_enable_resource_name_dns_a_record_on_launch
   map_public_ip_on_launch                     = var.map_public_ip_on_launch_private
   tags = {
-    "Name"      = format("%s%s%s", "private-subnet-${each.key}"),
+    "Name"      = each.key,
     Environment = var.environment,
     CreatedBy   = var.createdBy
   }
@@ -142,7 +142,7 @@ resource "aws_route_table" "vpc_route_table_private" {
   for_each = aws_subnet.vpc_private_subnet
   vpc_id   = aws_vpc.vpc.id
   tags = {
-    "Name"      = format("%s%s%s", "private-route-table-${each.key}"),
+    "Name"      = each.key,
     Environment = var.environment,
     CreatedBy   = var.createdBy
   }
