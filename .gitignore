@@ -1,0 +1,2 @@
+evironments/staging/.terraform/*
+evironments/staging/.terraform/terraform.lock.hcl

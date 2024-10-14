@@ -18,10 +18,6 @@ resource "aws_internet_gateway" "vpc_igw" {
 # Publiс Subnets
 ################################################################################
 
-
-
-#AWS Public Subnet for VPC
-
 resource "aws_subnet" "vpc_public_subnet" {
   for_each                = var.public_subnets
   vpc_id                  = aws_vpc.vpc.id
@@ -34,25 +30,6 @@ resource "aws_subnet" "vpc_public_subnet" {
     CreatedBy   = var.createdBy
   }
 }
-
-
-################################################################################
-# ACL
-################################################################################
-
-# resource "aws_network_acl" "public_acl" {
-#   vpc_id = aws_vpc.vpc.id
-#   tags = {
-#     Name        = "Public Network ACL",
-#     Environment = var.environment,
-#     CreatedBy   = var.createdBy
-#   }
-# }
-
-# resource "aws_network_acl_rule" "allow_private_to_public" {
-
-# }
-
 
 #AWS Route Table Public
 resource "aws_route_table" "vpc_route_table_public" {
