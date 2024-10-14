@@ -1,14 +1,14 @@
-module "public-security-group" {
+module "private-security-group" {
   source  = "../../modules/security-groups"
-  sg_name = "public-sg"
+  sg_name = "private-sg"
   vpc_id  = module.staging_vpc.id
   ingress_rules = [
     {
       description = "description"
-      from_port   = 20
-      to_port     = 20
+      from_port   = 22
+      to_port     = 22
       protocol    = "tcp"
-      cidr_blocks = ["0.0.0.0/0"]
+      cidr_blocks = [module.public-security-group.id]
     }
   ]
 
