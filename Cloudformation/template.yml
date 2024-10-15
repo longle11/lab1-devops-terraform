@@ -1,0 +1,155 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "This is a template for building vpc and ec2"
+Parameters:
+  CreateBy:
+    Description: Represents for this tag is created by
+    Type: String
+    Default: Cloudformation
+  KeyName:
+    Description: Key name of the Key Pair to use for the instance; which can be managed using the `aws_key_pair` resource
+    Type: String
+  AmiID:
+    Description: The ID of the AMI
+    Type: AWS::EC2::Image::Id
+Resources:
+  Vpc:
+    Type: "Group3::VPC::MyVPC::MODULE"
+    Properties:
+      VpcCIDR: "10.0.0.0/16"
+      EnableDNSHostnameVPC: "true"
+      EnableDNSSupportVPC: "true"
+      InstanceTenancy: "default"
+      CreateBy: !Ref CreateBy
+
+  PublicSecurityGroup:
+    Type: Group3::SecurityGroup::MySG::MODULE
+    Properties: 
+      GroupDescription: Only ssh from local machine 
+      VpcID: !GetAtt Vpc.VpcID
+      CreateBy: !Ref CreateBy
+      FromPort: 22
+      ToPort: 22
+      CidrIp: 0.0.0.0/0
+      IpProtocol: tcp
+
+  PrivateSecurityGroup:
+    Type: Group3::SecurityGroup::MySG::MODULE
+    Properties: 
+      GroupDescription: Only ssh from public subnet A
+      VpcID: !GetAtt Vpc.VpcID
+      CreateBy: !Ref CreateBy
+      FromPort: 22
+      ToPort: 22
+      CidrIp: !GetAtt Vpc.PublicSubnetACidrBlock
+      IpProtocol: tcp
+
+  PublicEc2:
+    Type: "Group3::EC2::MyEC2::MODULE"
+    Properties:
+      InstanceType: "t2.nano"
+      AssociatePublicIP: "true"
+      Monitoring: "true"
+      CreateBy: !Ref CreateBy
+      KeyName: !Ref KeyName
+      SubnetID: !GetAtt Vpc.PublicSubnetAID
+      VpcSecurityGroupIds:
+        - !GetAtt PublicSecurityGroup.SecurityGroupID
+      AmiID: !Ref AmiID
+      EC2Name: public ec2
+
+  PrivateEc2:
+    Type: "Group3::EC2::MyEC2::MODULE"
+    Properties:
+      InstanceType: "t2.nano"
+      AssociatePublicIP: "false"
+      Monitoring: "false"
+      CreateBy: !Ref CreateBy
+      KeyName: !Ref KeyName
+      SubnetID: !GetAtt Vpc.PrivateSubnetAID
+      VpcSecurityGroupIds:
+        - !GetAtt PrivateSecurityGroup.SecurityGroupID
+      AmiID: !Ref AmiID
+      EC2Name: private ec2
+
+
+
+Outputs:
+  VpcID:
+    Description: The ID of the VPC
+    Value: !GetAtt Vpc.VpcID
+
+  PublicSecurityGroupID:
+    Description: The ID of the public security group
+    Value: !GetAtt PublicSecurityGroup.SecurityGroupID
+
+  PrivateSecurityGroupID:
+    Description: The ID of the private security group
+    Value: !GetAtt PrivateSecurityGroup.SecurityGroupID
+
+  PublicEc2ID:
+    Description: The ID of the public EC2 instance
+    Value: !GetAtt PublicEc2.InstanceID
+
+  PrivateEc2ID:
+    Description: The ID of the private EC2 instance
+    Value: !GetAtt PrivateEc2.InstanceID
+
+  AmiID:
+    Description: The ID of the AMI used
+    Value: !Ref AmiID
+
+  VpcInstanceTenancy:
+    Description: Tenancy of instances spun up within VPC
+    Value: !GetAtt Vpc.InstanceTenancy
+
+  VpcCIDRBlock:
+    Description: The CIDR block of the VPC
+    Value: !GetAtt Vpc.CidrBlock
+
+  PublicSubnetAID:
+    Description: The ID of public subnet A
+    Value: !GetAtt Vpc.PublicSubnetAID
+
+  PublicSubnetBID:
+    Description: The ID of public subnet B
+    Value: !GetAtt Vpc.PublicSubnetBID
+
+  PrivateSubnetAID:
+    Description: The ID of private subnet A
+    Value: !GetAtt Vpc.PrivateSubnetAID
+  
+  PublicSubnetACidrBlock:
+    Value: !GetAtt Vpc.PublicSubnetACidrBlock
+    
+  PublicSubnetBCidrBlock:
+    Value: !GetAtt Vpc.PublicSubnetBCidrBlock
+
+  PrivateSubnetACidrBlock:
+    Value: !GetAtt Vpc.PrivateSubnetACidrBlock
+
+  PrivateSubnetBCidrBlock:
+    Value: !GetAtt Vpc.PrivateSubnetBCidrBlock
+
+  PrivateSubnetBID:
+    Description: The ID of private subnet B
+    Value: !GetAtt Vpc.PrivateSubnetBID
+
+  NatGatewayID:
+    Description: Contains the NAT Gateway ID
+    Value: !GetAtt Vpc.NatGatewayID
+
+  NatPublicIP:
+    Description: The Elastic IP address associated with the NAT Gateway
+    Value: !GetAtt Vpc.NatPublicIP
+
+  EIPID:
+    Description: Contains the EIP allocation ID
+    Value: !GetAtt Vpc.EipNatgateway
+
+  EIPPublicIP:
+    Description: Contains the public IP address
+    Value: !GetAtt Vpc.EIPPublicIP
+
+  IGWID:
+    Description: The ID of the Internet Gateway
+    Value: !GetAtt Vpc.IGWID

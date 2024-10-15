@@ -1,0 +1,41 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: "Security Group Module"
+Parameters:
+    VpcID:
+      Description: id of vpc
+      Type: String
+    CreateBy:
+      Description: Represents for this tag is created by
+      Type: String
+      Default: Cloudformation
+    FromPort:
+      Type: Number
+    ToPort:
+      Type: Number
+    CidrIp:
+      Type: String
+    IpProtocol:
+      Type: String
+    GroupDescription:
+      Type: String
+Resources:
+  SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties: 
+      GroupDescription: !Ref GroupDescription
+      SecurityGroupEgress: 
+        - IpProtocol: !Ref IpProtocol
+          FromPort: !Ref FromPort
+          ToPort: !Ref ToPort
+          CidrIp: !Ref CidrIp
+      SecurityGroupIngress: 
+        - IpProtocol: '-1'
+          CidrIp: 0.0.0.0/0
+      Tags: 
+        - Key: Name
+          Value: !Ref CreateBy
+      VpcId: !Ref VpcID
+Outputs:
+  SecurityGroupID:
+    Description: The ID of the security group
+    Value: !Ref SecurityGroup

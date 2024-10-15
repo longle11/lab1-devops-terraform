@@ -1,0 +1,542 @@
+[2024-10-15T03:25:29Z] DEBUG    - Logging set up successfully
+[2024-10-15T03:25:29Z] DEBUG    - Running submit: Namespace(version=False, subparser_name='submit', command=<function submit at 0x108effc40>, verbose=0, dry_run=False, endpoint_url=None, region=None, set_default=True, profile=None, role_arn=None, use_role=True, use_docker=False, no_docker=False)
+[2024-10-15T03:25:29Z] DEBUG    - Root directory: /Users/longle/Documents/Project/lab1-devops-terraform/Cloudformation/modules/subnet-module
+[2024-10-15T03:25:29Z] DEBUG    - Loading project file '/Users/longle/Documents/Project/lab1-devops-terraform/Cloudformation/modules/subnet-module/.rpdk-config'
+[2024-10-15T03:25:29Z] INFO     - Validating your module fragments...
+[2024-10-15T03:25:29Z] DEBUG    - Fragment directory: /Users/longle/Documents/Project/lab1-devops-terraform/Cloudformation/modules/subnet-module/fragments
+[2024-10-15T03:25:29Z] DEBUG    - Looking for CFLINTRC before attempting to load
+[2024-10-15T03:25:29Z] DEBUG    - Validating User CFNLINTRC
+[2024-10-15T03:25:29Z] DEBUG    - Validating CFNLINTRC config with given JSONSchema
+[2024-10-15T03:25:29Z] DEBUG    - Schema used: {'$id': 'https://github.com/aws-cloudformation/cfn-python-lint/blob/main/src/cfnlint/data/CfnLintCli/config/schema.json', '$schema': 'http://json-schema.org/draft-07/schema#', 'additionalProperties': False, 'description': 'CFNLINTRC configuration schema', 'properties': {'append_rules': {'description': 'Location of directories to append rules from', 'items': {'type': 'string'}, 'type': 'array'}, 'configure_rules': {'additionalProperties': False, 'description': 'Configure rules', 'patternProperties': {'^.*$': {'patternProperties': {'^.*$': {'anyOf': [{'type': 'string'}, {'type': 'integer'}, {'type': 'boolean'}, {'items': {'type': 'string'}, 'type': 'array'}, {'items': {'type': 'integer'}, 'type': 'array'}, {'items': {'type': 'string'}, 'type': 'boolean'}]}}, 'type': 'object'}}, 'type': 'object'}, 'custom_rules': {'description': 'custom rule file to use', 'type': 'string'}, 'ignore_checks': {'description': 'List of checks to ignore', 'items': {'type': 'string'}, 'type': 'array'}, 'ignore_templates': {'description': 'Templates to ignore', 'items': {'type': 'string'}, 'type': 'array'}, 'include_checks': {'description': 'List of checks to include', 'items': {'type': 'string'}, 'type': 'array'}, 'mandatory_checks': {'description': 'List of mandatory checks to enforce', 'items': {'type': 'string'}, 'type': 'array'}, 'merge_configs': {'description': 'Merges lists between configuration layers', 'type': 'boolean'}, 'output_file': {'description': 'Path to the file to write the main output to', 'type': 'string'}, 'override_spec': {'description': 'Path to spec file to override with', 'type': 'string'}, 'regions': {'description': 'Regions to test against', 'items': {'type': 'string'}, 'type': 'array'}, 'registry_schemas': {'description': 'One or more directories of CloudFormation Registry Resource Schemas', 'items': {'type': 'string'}, 'type': 'array'}, 'templates': {'description': 'Templates to lint', 'items': {'type': 'string'}, 'type': 'array'}}, 'title': 'CFNLINTRC JSON Schema', 'type': 'object'}
+[2024-10-15T03:25:29Z] DEBUG    - Config used: {}
+[2024-10-15T03:25:29Z] DEBUG    - CFNLINTRC looks valid!
+[2024-10-15T03:25:29Z] DEBUG    - Validating Project CFNLINTRC
+[2024-10-15T03:25:29Z] DEBUG    - Validating CFNLINTRC config with given JSONSchema
+[2024-10-15T03:25:29Z] DEBUG    - Schema used: {'$id': 'https://github.com/aws-cloudformation/cfn-python-lint/blob/main/src/cfnlint/data/CfnLintCli/config/schema.json', '$schema': 'http://json-schema.org/draft-07/schema#', 'additionalProperties': False, 'description': 'CFNLINTRC configuration schema', 'properties': {'append_rules': {'description': 'Location of directories to append rules from', 'items': {'type': 'string'}, 'type': 'array'}, 'configure_rules': {'additionalProperties': False, 'description': 'Configure rules', 'patternProperties': {'^.*$': {'patternProperties': {'^.*$': {'anyOf': [{'type': 'string'}, {'type': 'integer'}, {'type': 'boolean'}, {'items': {'type': 'string'}, 'type': 'array'}, {'items': {'type': 'integer'}, 'type': 'array'}, {'items': {'type': 'string'}, 'type': 'boolean'}]}}, 'type': 'object'}}, 'type': 'object'}, 'custom_rules': {'description': 'custom rule file to use', 'type': 'string'}, 'ignore_checks': {'description': 'List of checks to ignore', 'items': {'type': 'string'}, 'type': 'array'}, 'ignore_templates': {'description': 'Templates to ignore', 'items': {'type': 'string'}, 'type': 'array'}, 'include_checks': {'description': 'List of checks to include', 'items': {'type': 'string'}, 'type': 'array'}, 'mandatory_checks': {'description': 'List of mandatory checks to enforce', 'items': {'type': 'string'}, 'type': 'array'}, 'merge_configs': {'description': 'Merges lists between configuration layers', 'type': 'boolean'}, 'output_file': {'description': 'Path to the file to write the main output to', 'type': 'string'}, 'override_spec': {'description': 'Path to spec file to override with', 'type': 'string'}, 'regions': {'description': 'Regions to test against', 'items': {'type': 'string'}, 'type': 'array'}, 'registry_schemas': {'description': 'One or more directories of CloudFormation Registry Resource Schemas', 'items': {'type': 'string'}, 'type': 'array'}, 'templates': {'description': 'Templates to lint', 'items': {'type': 'string'}, 'type': 'array'}}, 'title': 'CFNLINTRC JSON Schema', 'type': 'object'}
+[2024-10-15T03:25:29Z] DEBUG    - Config used: {}
+[2024-10-15T03:25:29Z] DEBUG    - CFNLINTRC looks valid!
+[2024-10-15T03:25:29Z] DEBUG    - User configuration loaded as
+[2024-10-15T03:25:29Z] DEBUG    - {}
+[2024-10-15T03:25:29Z] DEBUG    - Project configuration loaded as
+[2024-10-15T03:25:29Z] DEBUG    - {}
+[2024-10-15T03:25:29Z] DEBUG    - Merging configurations...
+[2024-10-15T03:25:29Z] INFO     - Run scan of template /Users/longle/Documents/Project/lab1-devops-terraform/Cloudformation/modules/subnet-module/fragments/subnet.yml
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1151 at 2024-10-15 10:25:29.458221
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1151 at 2024-10-15 10:25:29.458248.  Ran in 0:00:00.000027
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1150 at 2024-10-15 10:25:29.458273
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1150 at 2024-10-15 10:25:29.458289.  Ran in 0:00:00.000016
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1152 at 2024-10-15 10:25:29.458306
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1152 at 2024-10-15 10:25:29.458319.  Ran in 0:00:00.000014
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1103 at 2024-10-15 10:25:29.458334
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1103 at 2024-10-15 10:25:29.458347.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1153 at 2024-10-15 10:25:29.458360
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1153 at 2024-10-15 10:25:29.458373.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3001 at 2024-10-15 10:25:29.458386
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3001 at 2024-10-15 10:25:29.458399.  Ran in 0:00:00.000014
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3036 at 2024-10-15 10:25:29.458413
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3036 at 2024-10-15 10:25:29.458425.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3028 at 2024-10-15 10:25:29.458439
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3028 at 2024-10-15 10:25:29.458451.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3005 at 2024-10-15 10:25:29.458464
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3005 at 2024-10-15 10:25:29.458476.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W3005 at 2024-10-15 10:25:29.458489
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W3005 at 2024-10-15 10:25:29.458512.  Ran in 0:00:00.000023
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3011 at 2024-10-15 10:25:29.458526
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3011 at 2024-10-15 10:25:29.458538.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3015 at 2024-10-15 10:25:29.458551
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3015 at 2024-10-15 10:25:29.458563.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3019 at 2024-10-15 10:25:29.458576
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3019 at 2024-10-15 10:25:29.460908.  Ran in 0:00:00.002332
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3038 at 2024-10-15 10:25:29.460937
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3038 at 2024-10-15 10:25:29.460954.  Ran in 0:00:00.000018
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3010 at 2024-10-15 10:25:29.460970
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3010 at 2024-10-15 10:25:29.460983.  Ran in 0:00:00.000014
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3055 at 2024-10-15 10:25:29.460998
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3055 at 2024-10-15 10:25:29.461013.  Ran in 0:00:00.000015
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3035 at 2024-10-15 10:25:29.461027
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3035 at 2024-10-15 10:25:29.461040.  Ran in 0:00:00.000014
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E5001 at 2024-10-15 10:25:29.461054
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E5001 at 2024-10-15 10:25:29.461093.  Ran in 0:00:00.000040
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3004 at 2024-10-15 10:25:29.461109
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3004 at 2024-10-15 10:25:29.461415.  Ran in 0:00:00.000307
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W3011 at 2024-10-15 10:25:29.461440
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W3011 at 2024-10-15 10:25:29.461457.  Ran in 0:00:00.000018
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3007 at 2024-10-15 10:25:29.461473
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3007 at 2024-10-15 10:25:29.461495.  Ran in 0:00:00.000022
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3009 at 2024-10-15 10:25:29.461510
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3009 at 2024-10-15 10:25:29.461523.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3006 at 2024-10-15 10:25:29.461537
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3006 at 2024-10-15 10:25:29.461550.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3051 at 2024-10-15 10:25:29.461563
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3051 at 2024-10-15 10:25:29.461576.  Ran in 0:00:00.000014
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3677 at 2024-10-15 10:25:29.461590
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3677 at 2024-10-15 10:25:29.461603.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W2533 at 2024-10-15 10:25:29.461616
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W2533 at 2024-10-15 10:25:29.461633.  Ran in 0:00:00.000017
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W3663 at 2024-10-15 10:25:29.461647
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W3663 at 2024-10-15 10:25:29.461660.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E2529 at 2024-10-15 10:25:29.461673
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E2529 at 2024-10-15 10:25:29.461696.  Ran in 0:00:00.000023
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E2531 at 2024-10-15 10:25:29.461711
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E2531 at 2024-10-15 10:25:29.461724.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W2530 at 2024-10-15 10:25:29.461738
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W2530 at 2024-10-15 10:25:29.461751.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E2533 at 2024-10-15 10:25:29.461764
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E2533 at 2024-10-15 10:25:29.461777.  Ran in 0:00:00.000014
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3663 at 2024-10-15 10:25:29.461790
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3663 at 2024-10-15 10:25:29.461803.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3634 at 2024-10-15 10:25:29.461816
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3634 at 2024-10-15 10:25:29.461828.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E2530 at 2024-10-15 10:25:29.461841
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E2530 at 2024-10-15 10:25:29.461854.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W2531 at 2024-10-15 10:25:29.461866
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W2531 at 2024-10-15 10:25:29.461879.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3678 at 2024-10-15 10:25:29.461892
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3678 at 2024-10-15 10:25:29.461904.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3633 at 2024-10-15 10:25:29.461917
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3633 at 2024-10-15 10:25:29.461929.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3615 at 2024-10-15 10:25:29.461942
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3615 at 2024-10-15 10:25:29.461954.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W3045 at 2024-10-15 10:25:29.461967
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W3045 at 2024-10-15 10:25:29.461979.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3045 at 2024-10-15 10:25:29.461992
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3045 at 2024-10-15 10:25:29.462005.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3675 at 2024-10-15 10:25:29.462017
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3675 at 2024-10-15 10:25:29.462030.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3670 at 2024-10-15 10:25:29.462043
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3670 at 2024-10-15 10:25:29.462055.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3057 at 2024-10-15 10:25:29.462068
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3057 at 2024-10-15 10:25:29.462080.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3013 at 2024-10-15 10:25:29.462093
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3013 at 2024-10-15 10:25:29.462105.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3635 at 2024-10-15 10:25:29.462118
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3635 at 2024-10-15 10:25:29.462131.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3638 at 2024-10-15 10:25:29.462149
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3638 at 2024-10-15 10:25:29.462162.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3039 at 2024-10-15 10:25:29.462176
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3039 at 2024-10-15 10:25:29.462188.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3639 at 2024-10-15 10:25:29.462201
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3639 at 2024-10-15 10:25:29.462213.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3044 at 2024-10-15 10:25:29.462227
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3044 at 2024-10-15 10:25:29.462239.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3056 at 2024-10-15 10:25:29.462252
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3056 at 2024-10-15 10:25:29.462264.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3052 at 2024-10-15 10:25:29.462278
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3052 at 2024-10-15 10:25:29.462290.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3053 at 2024-10-15 10:25:29.462303
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3053 at 2024-10-15 10:25:29.462315.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3049 at 2024-10-15 10:25:29.462328
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3049 at 2024-10-15 10:25:29.462340.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3048 at 2024-10-15 10:25:29.462354
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3048 at 2024-10-15 10:25:29.462366.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3046 at 2024-10-15 10:25:29.462379
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3046 at 2024-10-15 10:25:29.462392.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3042 at 2024-10-15 10:25:29.462405
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3042 at 2024-10-15 10:25:29.462417.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3047 at 2024-10-15 10:25:29.462430
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3047 at 2024-10-15 10:25:29.462442.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3054 at 2024-10-15 10:25:29.462455
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3054 at 2024-10-15 10:25:29.462468.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E2541 at 2024-10-15 10:25:29.462481
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E2541 at 2024-10-15 10:25:29.462496.  Ran in 0:00:00.000015
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E2540 at 2024-10-15 10:25:29.462509
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E2540 at 2024-10-15 10:25:29.462524.  Ran in 0:00:00.000015
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3676 at 2024-10-15 10:25:29.462537
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3676 at 2024-10-15 10:25:29.462549.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3680 at 2024-10-15 10:25:29.462562
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3680 at 2024-10-15 10:25:29.462574.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3679 at 2024-10-15 10:25:29.462588
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3679 at 2024-10-15 10:25:29.462600.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3667 at 2024-10-15 10:25:29.462616
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3667 at 2024-10-15 10:25:29.462629.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3641 at 2024-10-15 10:25:29.462642
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3641 at 2024-10-15 10:25:29.462654.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3510 at 2024-10-15 10:25:29.462667
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3510 at 2024-10-15 10:25:29.462680.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3511 at 2024-10-15 10:25:29.462693
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3511 at 2024-10-15 10:25:29.462705.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3050 at 2024-10-15 10:25:29.462718
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3050 at 2024-10-15 10:25:29.462730.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W2511 at 2024-10-15 10:25:29.462743
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W2511 at 2024-10-15 10:25:29.462755.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3513 at 2024-10-15 10:25:29.462769
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3513 at 2024-10-15 10:25:29.462781.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3512 at 2024-10-15 10:25:29.462794
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3512 at 2024-10-15 10:25:29.462806.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3020 at 2024-10-15 10:25:29.462819
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3020 at 2024-10-15 10:25:29.462831.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W3010 at 2024-10-15 10:25:29.462844
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W3010 at 2024-10-15 10:25:29.462857.  Ran in 0:00:00.000014
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3040 at 2024-10-15 10:25:29.462870
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3040 at 2024-10-15 10:25:29.462882.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3033 at 2024-10-15 10:25:29.462896
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3033 at 2024-10-15 10:25:29.462908.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W2506 at 2024-10-15 10:25:29.462921
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W2506 at 2024-10-15 10:25:29.462933.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3002 at 2024-10-15 10:25:29.462946
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3002 at 2024-10-15 10:25:29.462958.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3018 at 2024-10-15 10:25:29.462971
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3018 at 2024-10-15 10:25:29.462983.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3034 at 2024-10-15 10:25:29.462996
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3034 at 2024-10-15 10:25:29.463008.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3003 at 2024-10-15 10:25:29.463022
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3003 at 2024-10-15 10:25:29.463034.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W3002 at 2024-10-15 10:25:29.463047
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W3002 at 2024-10-15 10:25:29.463058.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3031 at 2024-10-15 10:25:29.463075
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3031 at 2024-10-15 10:25:29.463087.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3058 at 2024-10-15 10:25:29.463100
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3058 at 2024-10-15 10:25:29.463112.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3012 at 2024-10-15 10:25:29.463125
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3012 at 2024-10-15 10:25:29.463137.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3032 at 2024-10-15 10:25:29.463150
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3032 at 2024-10-15 10:25:29.463162.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3037 at 2024-10-15 10:25:29.463175
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3037 at 2024-10-15 10:25:29.463188.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3008 at 2024-10-15 10:25:29.463200
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3008 at 2024-10-15 10:25:29.463212.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3021 at 2024-10-15 10:25:29.463225
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3021 at 2024-10-15 10:25:29.463237.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3017 at 2024-10-15 10:25:29.463250
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3017 at 2024-10-15 10:25:29.463262.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3030 at 2024-10-15 10:25:29.463275
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3030 at 2024-10-15 10:25:29.463288.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W2501 at 2024-10-15 10:25:29.463301
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W2501 at 2024-10-15 10:25:29.463623.  Ran in 0:00:00.000323
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3024 at 2024-10-15 10:25:29.463639
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3024 at 2024-10-15 10:25:29.463652.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3014 at 2024-10-15 10:25:29.463665
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3014 at 2024-10-15 10:25:29.463677.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3617 at 2024-10-15 10:25:29.463690
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3617 at 2024-10-15 10:25:29.463703.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3016 at 2024-10-15 10:25:29.463716
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3016 at 2024-10-15 10:25:29.463728.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3672 at 2024-10-15 10:25:29.463742
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3672 at 2024-10-15 10:25:29.463754.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3620 at 2024-10-15 10:25:29.463767
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3620 at 2024-10-15 10:25:29.463779.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3027 at 2024-10-15 10:25:29.463792
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3027 at 2024-10-15 10:25:29.463805.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3504 at 2024-10-15 10:25:29.463818
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3504 at 2024-10-15 10:25:29.463834.  Ran in 0:00:00.000016
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3043 at 2024-10-15 10:25:29.463847
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3043 at 2024-10-15 10:25:29.463863.  Ran in 0:00:00.000016
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3647 at 2024-10-15 10:25:29.463876
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3647 at 2024-10-15 10:25:29.463889.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3026 at 2024-10-15 10:25:29.463902
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3026 at 2024-10-15 10:25:29.463914.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3621 at 2024-10-15 10:25:29.463927
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3621 at 2024-10-15 10:25:29.463940.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W3689 at 2024-10-15 10:25:29.463953
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W3689 at 2024-10-15 10:25:29.463965.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W3693 at 2024-10-15 10:25:29.463978
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W3693 at 2024-10-15 10:25:29.463990.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3692 at 2024-10-15 10:25:29.464003
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3692 at 2024-10-15 10:25:29.464015.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3686 at 2024-10-15 10:25:29.464029
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3686 at 2024-10-15 10:25:29.464041.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3025 at 2024-10-15 10:25:29.464054
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3025 at 2024-10-15 10:25:29.464067.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3691 at 2024-10-15 10:25:29.464080
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3691 at 2024-10-15 10:25:29.464092.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W3688 at 2024-10-15 10:25:29.464105
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W3688 at 2024-10-15 10:25:29.464117.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3690 at 2024-10-15 10:25:29.464130
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3690 at 2024-10-15 10:25:29.464142.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3693 at 2024-10-15 10:25:29.464155
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3693 at 2024-10-15 10:25:29.464167.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3682 at 2024-10-15 10:25:29.464180
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3682 at 2024-10-15 10:25:29.464192.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3689 at 2024-10-15 10:25:29.464205
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3689 at 2024-10-15 10:25:29.464217.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3694 at 2024-10-15 10:25:29.464230
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3694 at 2024-10-15 10:25:29.464242.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3601 at 2024-10-15 10:25:29.464255
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3601 at 2024-10-15 10:25:29.464267.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3652 at 2024-10-15 10:25:29.464280
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3652 at 2024-10-15 10:25:29.464296.  Ran in 0:00:00.000017
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3673 at 2024-10-15 10:25:29.464310
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3673 at 2024-10-15 10:25:29.464322.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3022 at 2024-10-15 10:25:29.464335
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3022 at 2024-10-15 10:25:29.464355.  Ran in 0:00:00.000021
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3674 at 2024-10-15 10:25:29.464369
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3674 at 2024-10-15 10:25:29.464381.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3688 at 2024-10-15 10:25:29.464394
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3688 at 2024-10-15 10:25:29.464407.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W3687 at 2024-10-15 10:25:29.464420
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W3687 at 2024-10-15 10:25:29.464432.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3687 at 2024-10-15 10:25:29.464444
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3687 at 2024-10-15 10:25:29.464457.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3628 at 2024-10-15 10:25:29.464470
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3628 at 2024-10-15 10:25:29.464482.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3671 at 2024-10-15 10:25:29.464494
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3671 at 2024-10-15 10:25:29.464506.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3660 at 2024-10-15 10:25:29.464519
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3660 at 2024-10-15 10:25:29.464531.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3503 at 2024-10-15 10:25:29.464544
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3503 at 2024-10-15 10:25:29.464556.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3661 at 2024-10-15 10:25:29.464569
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3661 at 2024-10-15 10:25:29.464581.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3041 at 2024-10-15 10:25:29.464594
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3041 at 2024-10-15 10:25:29.464606.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3023 at 2024-10-15 10:25:29.464619
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3023 at 2024-10-15 10:25:29.464632.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E3029 at 2024-10-15 10:25:29.464644
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E3029 at 2024-10-15 10:25:29.464656.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1005 at 2024-10-15 10:25:29.464669
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1005 at 2024-10-15 10:25:29.464681.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1001 at 2024-10-15 10:25:29.464694
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1001 at 2024-10-15 10:25:29.494801.  Ran in 0:00:00.030109
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1101 at 2024-10-15 10:25:29.494867
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1101 at 2024-10-15 10:25:29.494889.  Ran in 0:00:00.000023
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E8003 at 2024-10-15 10:25:29.494907
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E8003 at 2024-10-15 10:25:29.494934.  Ran in 0:00:00.000027
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E8002 at 2024-10-15 10:25:29.494949
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E8002 at 2024-10-15 10:25:29.494962.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E8001 at 2024-10-15 10:25:29.494976
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E8001 at 2024-10-15 10:25:29.494988.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W8001 at 2024-10-15 10:25:29.495002
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W8001 at 2024-10-15 10:25:29.495101.  Ran in 0:00:00.000099
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E8006 at 2024-10-15 10:25:29.495118
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E8006 at 2024-10-15 10:25:29.495131.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E8005 at 2024-10-15 10:25:29.495145
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E8005 at 2024-10-15 10:25:29.495157.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E8007 at 2024-10-15 10:25:29.495171
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E8007 at 2024-10-15 10:25:29.495183.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W8003 at 2024-10-15 10:25:29.495196
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W8003 at 2024-10-15 10:25:29.495208.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E8004 at 2024-10-15 10:25:29.495222
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E8004 at 2024-10-15 10:25:29.495234.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E2001 at 2024-10-15 10:25:29.495247
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E2001 at 2024-10-15 10:25:29.495259.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W2010 at 2024-10-15 10:25:29.495273
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W2010 at 2024-10-15 10:25:29.495285.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W2001 at 2024-10-15 10:25:29.495298
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W2001 at 2024-10-15 10:25:29.495400.  Ran in 0:00:00.000103
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W3034 at 2024-10-15 10:25:29.495417
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W3034 at 2024-10-15 10:25:29.495431.  Ran in 0:00:00.000014
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E2003 at 2024-10-15 10:25:29.495445
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E2003 at 2024-10-15 10:25:29.495457.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E2002 at 2024-10-15 10:25:29.495471
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E2002 at 2024-10-15 10:25:29.495483.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E2011 at 2024-10-15 10:25:29.495496
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E2011 at 2024-10-15 10:25:29.495508.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E2015 at 2024-10-15 10:25:29.495521
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E2015 at 2024-10-15 10:25:29.495551.  Ran in 0:00:00.000031
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E2010 at 2024-10-15 10:25:29.495566
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E2010 at 2024-10-15 10:25:29.495578.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W2031 at 2024-10-15 10:25:29.495618
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W2031 at 2024-10-15 10:25:29.495631.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W2030 at 2024-10-15 10:25:29.495644
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W2030 at 2024-10-15 10:25:29.495656.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W1011 at 2024-10-15 10:25:29.495669
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W1011 at 2024-10-15 10:25:29.495681.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1700 at 2024-10-15 10:25:29.495694
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1700 at 2024-10-15 10:25:29.495706.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1701 at 2024-10-15 10:25:29.495719
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1701 at 2024-10-15 10:25:29.495731.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1702 at 2024-10-15 10:25:29.495744
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1702 at 2024-10-15 10:25:29.495756.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W1034 at 2024-10-15 10:25:29.495769
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W1034 at 2024-10-15 10:25:29.495781.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1052 at 2024-10-15 10:25:29.495794
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1052 at 2024-10-15 10:25:29.495806.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W1001 at 2024-10-15 10:25:29.495819
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W1001 at 2024-10-15 10:25:29.495887.  Ran in 0:00:00.000069
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W1019 at 2024-10-15 10:25:29.495902
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W1019 at 2024-10-15 10:25:29.495915.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1021 at 2024-10-15 10:25:29.495928
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1021 at 2024-10-15 10:25:29.495941.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1010 at 2024-10-15 10:25:29.495954
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1010 at 2024-10-15 10:25:29.495966.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1030 at 2024-10-15 10:25:29.495979
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1030 at 2024-10-15 10:25:29.495991.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1050 at 2024-10-15 10:25:29.496004
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1050 at 2024-10-15 10:25:29.496017.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W1036 at 2024-10-15 10:25:29.496030
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W1036 at 2024-10-15 10:25:29.496042.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1024 at 2024-10-15 10:25:29.496055
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1024 at 2024-10-15 10:25:29.496066.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1051 at 2024-10-15 10:25:29.496079
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1051 at 2024-10-15 10:25:29.496092.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1011 at 2024-10-15 10:25:29.496105
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1011 at 2024-10-15 10:25:29.496117.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1022 at 2024-10-15 10:25:29.496133
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1022 at 2024-10-15 10:25:29.496146.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W1031 at 2024-10-15 10:25:29.496159
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W1031 at 2024-10-15 10:25:29.496171.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1032 at 2024-10-15 10:25:29.496184
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1032 at 2024-10-15 10:25:29.496197.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W1020 at 2024-10-15 10:25:29.496210
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W1020 at 2024-10-15 10:25:29.496222.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1027 at 2024-10-15 10:25:29.496236
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1027 at 2024-10-15 10:25:29.496248.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W1030 at 2024-10-15 10:25:29.496261
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W1030 at 2024-10-15 10:25:29.496273.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W1032 at 2024-10-15 10:25:29.496286
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W1032 at 2024-10-15 10:25:29.496299.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1018 at 2024-10-15 10:25:29.496312
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1018 at 2024-10-15 10:25:29.496324.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1029 at 2024-10-15 10:25:29.496337
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1029 at 2024-10-15 10:25:29.496624.  Ran in 0:00:00.000287
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1020 at 2024-10-15 10:25:29.496642
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1020 at 2024-10-15 10:25:29.496655.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1019 at 2024-10-15 10:25:29.496669
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1019 at 2024-10-15 10:25:29.496681.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W1040 at 2024-10-15 10:25:29.496695
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W1040 at 2024-10-15 10:25:29.496707.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W1028 at 2024-10-15 10:25:29.496720
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W1028 at 2024-10-15 10:25:29.496732.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W1035 at 2024-10-15 10:25:29.496746
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W1035 at 2024-10-15 10:25:29.496758.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1017 at 2024-10-15 10:25:29.496771
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1017 at 2024-10-15 10:25:29.496783.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1015 at 2024-10-15 10:25:29.496796
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1015 at 2024-10-15 10:25:29.496808.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1031 at 2024-10-15 10:25:29.496821
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1031 at 2024-10-15 10:25:29.496833.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1040 at 2024-10-15 10:25:29.496846
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1040 at 2024-10-15 10:25:29.496858.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W1033 at 2024-10-15 10:25:29.496883
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W1033 at 2024-10-15 10:25:29.496895.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1016 at 2024-10-15 10:25:29.496908
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1016 at 2024-10-15 10:25:29.496920.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1028 at 2024-10-15 10:25:29.496933
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1028 at 2024-10-15 10:25:29.496945.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1004 at 2024-10-15 10:25:29.496958
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1004 at 2024-10-15 10:25:29.496970.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1002 at 2024-10-15 10:25:29.496983
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1002 at 2024-10-15 10:25:29.497021.  Ran in 0:00:00.000038
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E1003 at 2024-10-15 10:25:29.497035
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E1003 at 2024-10-15 10:25:29.497047.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E7001 at 2024-10-15 10:25:29.497060
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E7001 at 2024-10-15 10:25:29.497072.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W7001 at 2024-10-15 10:25:29.497086
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W7001 at 2024-10-15 10:25:29.497099.  Ran in 0:00:00.000014
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E7010 at 2024-10-15 10:25:29.497113
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E7010 at 2024-10-15 10:25:29.497125.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E7002 at 2024-10-15 10:25:29.497138
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E7002 at 2024-10-15 10:25:29.497150.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E0002 at 2024-10-15 10:25:29.497163
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E0002 at 2024-10-15 10:25:29.497175.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E0001 at 2024-10-15 10:25:29.497188
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E0001 at 2024-10-15 10:25:29.497200.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E0000 at 2024-10-15 10:25:29.497213
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E0000 at 2024-10-15 10:25:29.497225.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E6001 at 2024-10-15 10:25:29.497238
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E6001 at 2024-10-15 10:25:29.497250.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E6002 at 2024-10-15 10:25:29.497263
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E6002 at 2024-10-15 10:25:29.497275.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E6004 at 2024-10-15 10:25:29.497288
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E6004 at 2024-10-15 10:25:29.497300.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E6003 at 2024-10-15 10:25:29.497313
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E6003 at 2024-10-15 10:25:29.497324.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E6102 at 2024-10-15 10:25:29.497337
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E6102 at 2024-10-15 10:25:29.497353.  Ran in 0:00:00.000016
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E6005 at 2024-10-15 10:25:29.497366
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E6005 at 2024-10-15 10:25:29.497378.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E6010 at 2024-10-15 10:25:29.497391
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E6010 at 2024-10-15 10:25:29.497403.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E6011 at 2024-10-15 10:25:29.497416
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E6011 at 2024-10-15 10:25:29.497428.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E6101 at 2024-10-15 10:25:29.497441
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E6101 at 2024-10-15 10:25:29.497453.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W6001 at 2024-10-15 10:25:29.497466
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W6001 at 2024-10-15 10:25:29.497478.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E4002 at 2024-10-15 10:25:29.497491
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E4002 at 2024-10-15 10:25:29.497502.  Ran in 0:00:00.000012
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W4001 at 2024-10-15 10:25:29.497515
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W4001 at 2024-10-15 10:25:29.497527.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule E4001 at 2024-10-15 10:25:29.497540
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule E4001 at 2024-10-15 10:25:29.497553.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] DEBUG    - Starting match function for rule W4005 at 2024-10-15 10:25:29.497566
+[2024-10-15T03:25:29Z] DEBUG    - Complete match function for rule W4005 at 2024-10-15 10:25:29.497578.  Ran in 0:00:00.000013
+[2024-10-15T03:25:29Z] WARNING  - Module fragment is valid.
+[2024-10-15T03:25:29Z] DEBUG    - Overwriting '/Users/longle/Documents/Project/lab1-devops-terraform/Cloudformation/modules/subnet-module/schema.json'
+[2024-10-15T03:25:29Z] DEBUG    - overrides.json not found. Not writing to package.
+[2024-10-15T03:25:29Z] DEBUG    - Packaging complete, uploading...
+[2024-10-15T03:25:29Z] DEBUG    - Uploading to region 'us-east-1'
+[2024-10-15T03:25:29Z] INFO     - Creating CloudFormationManagedUploadInfrastructure
+[2024-10-15T03:25:32Z] DEBUG    - Waiting for stack 'arn:aws:cloudformation:us-east-1:716644578655:stack/CloudFormationManagedUploadInfrastructure/226e8500-8aa5-11ef-af76-0e4d6e7dc447'
+[2024-10-15T03:25:43Z] DEBUG    - Waiter failed for stack 'arn:aws:cloudformation:us-east-1:716644578655:stack/CloudFormationManagedUploadInfrastructure/226e8500-8aa5-11ef-af76-0e4d6e7dc447'
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/cloudformation-cli/0.2.38/libexec/lib/python3.13/site-packages/rpdk/core/upload.py", line 48, in _wait_for_stack
+    waiter.wait(
+    ~~~~~~~~~~~^
+        StackName=stack_id, WaiterConfig={"Delay": 5, "MaxAttempts": 200}
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/opt/homebrew/Cellar/cloudformation-cli/0.2.38/libexec/lib/python3.13/site-packages/botocore/waiter.py", line 55, in wait
+    Waiter.wait(self, **kwargs)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/cloudformation-cli/0.2.38/libexec/lib/python3.13/site-packages/botocore/waiter.py", line 374, in wait
+    raise WaiterError(
+    ...<3 lines>...
+    )
+botocore.exceptions.WaiterError: Waiter StackCreateComplete failed: Waiter encountered a terminal failure state: For expression "Stacks[].StackStatus" we matched expected path: "ROLLBACK_COMPLETE" at least once
+[2024-10-15T03:25:43Z] CRITICAL - Failed to create or update the 'arn:aws:cloudformation:us-east-1:716644578655:stack/CloudFormationManagedUploadInfrastructure/226e8500-8aa5-11ef-af76-0e4d6e7dc447' stack. This stack is in your account, so you may be able to self-help by looking at 'arn:aws:cloudformation:us-east-1:716644578655:stack/CloudFormationManagedUploadInfrastructure/226e8500-8aa5-11ef-af76-0e4d6e7dc447'. Otherwise, please reach out to CloudFormation.
+[2024-10-15T03:25:43Z] DEBUG    - Unhandled exception
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/cloudformation-cli/0.2.38/libexec/lib/python3.13/site-packages/rpdk/core/upload.py", line 48, in _wait_for_stack
+    waiter.wait(
+    ~~~~~~~~~~~^
+        StackName=stack_id, WaiterConfig={"Delay": 5, "MaxAttempts": 200}
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/opt/homebrew/Cellar/cloudformation-cli/0.2.38/libexec/lib/python3.13/site-packages/botocore/waiter.py", line 55, in wait
+    Waiter.wait(self, **kwargs)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/cloudformation-cli/0.2.38/libexec/lib/python3.13/site-packages/botocore/waiter.py", line 374, in wait
+    raise WaiterError(
+    ...<3 lines>...
+    )
+botocore.exceptions.WaiterError: Waiter StackCreateComplete failed: Waiter encountered a terminal failure state: For expression "Stacks[].StackStatus" we matched expected path: "ROLLBACK_COMPLETE" at least once
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/cloudformation-cli/0.2.38/libexec/lib/python3.13/site-packages/rpdk/core/cli.py", line 105, in main
+    args.command(args)
+    ~~~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/cloudformation-cli/0.2.38/libexec/lib/python3.13/site-packages/rpdk/core/submit.py", line 19, in submit
+    project.submit(
+    ~~~~~~~~~~~~~~^
+        args.dry_run,
+        ^^^^^^^^^^^^^
+    ...<5 lines>...
+        args.profile,
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "/opt/homebrew/Cellar/cloudformation-cli/0.2.38/libexec/lib/python3.13/site-packages/rpdk/core/project.py", line 730, in submit
+    self._upload(
+    ~~~~~~~~~~~~^
+        f,
+        ^^
+    ...<5 lines>...
+        profile_name,
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "/opt/homebrew/Cellar/cloudformation-cli/0.2.38/libexec/lib/python3.13/site-packages/rpdk/core/project.py", line 1181, in _upload
+    s3_url = uploader.upload(self.hypenated_name, fileobj)
+  File "/opt/homebrew/Cellar/cloudformation-cli/0.2.38/libexec/lib/python3.13/site-packages/rpdk/core/upload.py", line 158, in upload
+    stack_id = self._create_or_update_stack(template, INFRA_STACK_NAME)
+  File "/opt/homebrew/Cellar/cloudformation-cli/0.2.38/libexec/lib/python3.13/site-packages/rpdk/core/upload.py", line 131, in _create_or_update_stack
+    self._wait_for_stack(
+    ~~~~~~~~~~~~~~~~~~~~^
+        stack_id,
+        ^^^^^^^^^
+        "stack_create_complete",
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+        f"{stack_name} stack was successfully created",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/opt/homebrew/Cellar/cloudformation-cli/0.2.38/libexec/lib/python3.13/site-packages/rpdk/core/upload.py", line 60, in _wait_for_stack
+    raise UploadError(
+        f"Failed to create or update the '{stack_id}' stack"
+    ) from e
+rpdk.core.exceptions.UploadError: Failed to create or update the 'arn:aws:cloudformation:us-east-1:716644578655:stack/CloudFormationManagedUploadInfrastructure/226e8500-8aa5-11ef-af76-0e4d6e7dc447' stack

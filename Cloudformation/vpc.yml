@@ -1,0 +1,338 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: "This is a vpc template"
+# Metadata:
+#     AWS::CloudFormation::Interface:
+#         ParameterGroups:
+#         - ParameterGroup
+#         ParameterLabels:
+#         ParameterLabel
+
+Parameters:
+    VpcCIDR:
+        Description: CIDR ipv4 for this vpc
+        Type: String
+        Default: 192.168.0.0/16 
+    PublicSubnet1CIDR:
+        Description: CIDR ipv4 for the first public subnet in vpc
+        Type: String
+        Default: 192.168.1.0/24
+    PublicSubnet2CIDR:
+        Description: CIDR ipv4 for the second public subnet in vpc
+        Type: String
+        Default: 192.168.2.0/24
+    PrivateSubnet1CIDR:
+        Description: CIDR ipv4 for the first private subnet in vpc
+        Type: String
+        Default: 192.168.3.0/24
+    PrivateSubnet2CIDR:
+        Description: CIDR ipv4 for the second private subnet in vpc
+        Type: String
+        Default: 192.168.4.0/24
+    
+    EnableDNSHostnameVPC: 
+        Description: Should be true to enable DNS hostnames in the VPC
+        Type: Boolean
+        Default: true
+    EnableDNSSupportVPC:
+        Description: Should be true to enable DNS support in the VPC
+        Type: Boolean
+        Default: true
+    MapOnLaunchOnPublicSubnet: 
+        Description: Specify true to indicate that instances launched into the subnet should be assigned a public IP address. Default is `false`
+        Type: Boolean
+        Default: true
+    MapOnLaunchOnPrivateSubnet: 
+        Description: Specify true to indicate that instances launched into the subnet should be assigned a private IP address. Default is `false`
+        Type: Boolean
+        Default: false
+    InstanceTenancy: 
+        Description: A tenancy option for instances launched into the VPC
+        Type: String
+        Default: default
+
+    CreateBy: 
+        Description: Represents for this tag is created by
+        Type: String
+        Default: Cloudformation
+Resources:
+    VPC:
+        Type: AWS::EC2::VPC
+        Properties:
+            CidrBlock: !Ref VpcCIDR
+            EnableDnsHostnames: !Ref EnableDNSHostnameVPC
+            EnableDnsSupport: !Ref EnableDNSSupportVPC
+            InstanceTenancy: !Ref InstanceTenancy
+            Tags: 
+                - Key: Name
+                  Value: MyVPC tag  
+                - key: CreateBy
+                  value: !Ref CreateBy
+    InternetGateway:
+        Type: AWS::EC2:InternetGateway
+        Properties:
+            Tags: 
+                - Key: Name
+                  Value: IGW for MyVPC
+                - key: CreateBy
+                  value: !Ref CreateBy
+    IGWAttachToVPC:
+        Type: AWS::EC2::VPCGatewayAttachment
+        Properties:
+            VpcId: !Ref VPC
+            InternetGatewayId: !Ref InternetGateway
+
+
+    PublicSubnet1:
+        Type: AWS::EC2::Subnet
+        Properties:
+            AvailabilityZone: !Select [0, !GetAZs '']
+            CidrBlock: !Ref PublicSubnet1CIDR
+            MapPublicIpOnLaunch: !Ref MapPublicOnLaunch
+            VpcId: !Ref VPC
+            Tags: 
+                - Key: Name
+                  Value: Public subnet 1
+                - key: CreateBy
+                  value: !Ref CreateBy
+    PublicSubnet2:
+        Type: AWS::EC2::Subnet
+        Properties:
+            AvailabilityZone: !Select [1, !GetAZs '']
+            CidrBlock: !Ref PublicSubnet2CIDR
+            MapPublicIpOnLaunch: !Ref MapPublicOnLaunch
+            VpcId: !Ref VPC
+            Tags: 
+                - Key: Name
+                  Value: Public subnet 2
+                - key: CreateBy
+                  value: !Ref CreateBy
+    PublicRouteTable:
+        Type: AWS::EC2::RouteTable
+        DependsOn: AttachGateway
+        Properties:
+            Tags: 
+                - Tag
+            VpcId: !Ref VPC
+    PublicRoute:
+        Type: AWS::EC2::Route
+        DependsOn: IGWAttachToVPC
+        Properties:
+            DestinationCidrBlock: 0.0.0.0/0
+            GatewayId: !Ref InternetGateway
+            RouteTableId: !Ref PublicRouteTable
+
+
+    PublicSubnet1RouteAssociation:
+        Type: AWS::EC2::SubnetRouteTableAssociation
+        Properties:
+            RouteTableId: !Ref PublicRouteTable
+            SubnetId: !Ref PublicSubnet1
+    PublicSubnet2RouteAssociation:
+        Type: AWS::EC2::SubnetRouteTableAssociation
+        Properties:
+            RouteTableId: !Ref PublicRouteTable
+            SubnetId: !Ref PublicSubnet2
+
+
+    EipNatgateway:
+        Type: AWS::EC2::EIP
+        Properties:
+            Domain: vpc
+        Tags: 
+            - Name: !Ref EipName
+            - CreateBy: !Ref CreateBy
+
+    NATGateway:
+        Type: AWS::EC2::NatGateway
+        Properties:
+            AllocationId: !GetAtt EipNatgateway.AllocationId
+            SubnetId: !Ref PublicSubnet1
+
+    PrivateSubnet1:
+        Type: AWS::EC2::Subnet
+        Properties:
+            AvailabilityZone: !Select [0, !GetAZs '']
+            CidrBlock: !Ref PrivateSubnet1CIDR
+            MapPublicIpOnLaunch: !Ref MapOnLaunchOnPublicSubnet
+            VpcId: !Ref VPC
+            Tags: 
+                - Key: Name
+                  Value: Private subnet 1
+                - key: CreateBy
+                  value: !Ref CreateBy
+    PrivateSubnet2:
+        Type: AWS::EC2::Subnet
+        Properties:
+            AvailabilityZone: !Select [1, !GetAZs '']
+            CidrBlock: !Ref PrivateSubnet2CIDR
+            MapPublicIpOnLaunch: !Ref MapOnLaunchOnPrivateSubnet
+            VpcId: !Ref VPC
+            Tags: 
+                - Key: Name
+                  Value: Private subnet 2
+                - key: CreateBy
+                  value: !Ref CreateBy 
+                  
+    PrivateSubnet1RouteTable:
+        Type: AWS::EC2::RouteTable
+        Properties:
+            Tags: 
+                - Tag
+            VpcId: !Ref VPC
+
+    PrivateSubnet2RouteTable:
+        Type: AWS::EC2::RouteTable
+        Properties:
+            Tags: 
+                - Tag
+            VpcId: !Ref VPC
+
+    PrivateSubnet1Route:
+        Type: AWS::EC2::Route
+        Properties:
+            DestinationCidrBlock: 0.0.0.0/0
+            NatGatewayId: !Ref NATGateway
+            RouteTableId: !Ref PrivateSubnet1RouteTable
+    PrivateSubnet2Route:
+        Type: AWS::EC2::Route
+        Properties:
+            DestinationCidrBlock: 0.0.0.0/0
+            NatGatewayId: !Ref NATGateway
+            RouteTableId: !Ref PrivateSubnet2RouteTable
+
+            
+    PrivateSubnet1RouteAssociation:
+        Type: AWS::EC2::SubnetRouteTableAssociation
+        Properties:
+            RouteTableId: !Ref PrivateSubnet1RouteTable
+            SubnetId: !Ref PrivateSubnet1
+    PrivateSubnet2RouteAssociation:
+        Type: AWS::EC2::SubnetRouteTableAssociation
+        Properties:
+            RouteTableId: !Ref PrivateSubnet2RouteTable
+            SubnetId: !Ref PrivateSubnet2
+
+    VpcDefaultSecurityGroup:
+        Type: AWS::EC2::SecurityGroup
+        Properties:
+            SecurityGroupEgress: 
+                -   IpProtocol: "-1"
+                    FromPort: 0
+                    ToPort: 0
+                    CidrIp: 0.0.0.0/0
+            SecurityGroupIngress: 
+                -   IpProtocol: "-1"
+                    FromPort: 0
+                    ToPort: 0
+                    CidrIp: !GetAtt VPC.CidrBlock
+            Tags: 
+                - Name: Default SG VPC
+                  Value: Private subnet 2
+                - CreateBy: !Ref CreateBy 
+            VpcId: !Ref VPC
+Outputs:
+    VpcID:
+        Description: The ID of the VPC
+        Value: !Ref VPC
+        Export: 
+          Name: VpcID
+
+    VpcArn:
+        Description: The ARN of the VPC
+        Value: !GetAtt VPC.Arn
+
+    VpcInstanceTenancy:
+        Description: Tenancy of instances spun up within VPC
+        Value: !GetAtt VPC.InstanceTenancy
+
+    VpcCIDRBlock:
+        Description: The CIDR block of the VPC
+        Value: !GetAtt VPC.CidrBlock
+
+    VpcEnableDnsSupport:
+        Description: Whether or not the VPC has DNS support
+        Value: !GetAtt VPC.EnableDnsSupport
+
+    VpcEnableDnsHostnames:
+        Description: Whether or not the VPC has DNS hostname support
+        Value: !GetAtt VPC.EnableDnsHostnames
+
+    NatGatewayID:
+        Description: Contains the NAT Gateway ID
+        Value: !Ref NATGateway
+
+    AssociationID:
+        Description: The association ID of the Elastic IP address associated with the NAT Gateway
+        Value: !GetAtt NATGateway.AssociationId
+
+    NatPublicIP:
+        Description: The Elastic IP address associated with the NAT Gateway
+        Value: !GetAtt NATGateway.PublicIp
+
+    EIPID:
+        Description: Contains the EIP allocation ID
+        Value: !Ref EipNatgateway
+
+    EIPPublicIP:
+        Description: Contains the public IP address
+        Value: !GetAtt EipNatgateway.PublicIp
+
+    EIPPublicDNS:
+        Description: Public DNS associated with the Elastic IP address
+        Value: !GetAtt EipNatgateway.PublicDns
+
+    IGWID:
+        Description: The ID of the Internet Gateway
+        Value: !Ref InternetGateway
+
+    IGWARN:
+        Description: The ARN of the Internet Gateway
+        Value: !GetAtt InternetGateway.Arn
+
+    PublicSubnets:
+        Description: List of IDs of public subnets
+        Value: !Join
+        - ","
+        - [!Ref PublicSubnet1, !Ref PublicSubnet2]
+
+    PublicSubnetARNs:
+        Description: List of ARNs of public subnets
+        Value: !Join
+        - ","
+        - [!GetAtt PublicSubnet1.Arn, !GetAtt PublicSubnet2.Arn]
+
+    PublicSubnetsCIDRBlocks:
+        Description: List of CIDR blocks of public subnets
+        Value: !Join
+        - ","
+        - [!Ref PublicSubnet1CIDR, !Ref PublicSubnet2CIDR]
+
+    PublicRouteTableAssociationIDs:
+        Description: List of IDs of the public route table associations
+        Value: !Join
+        - ","
+        - [!Ref PublicSubnet1RouteAssociation, !Ref PublicSubnet2RouteAssociation]
+
+    PrivateSubnets:
+        Description: List of IDs of private subnets
+        Value: !Join
+        - ","
+        - [!Ref PrivateSubnet1, !Ref PrivateSubnet2]
+
+    PrivateSubnetARNs:
+        Description: List of ARNs of private subnets
+        Value: !Join
+        - ","
+        - [!GetAtt PrivateSubnet1.Arn, !GetAtt PrivateSubnet2.Arn]
+
+    PrivateSubnetsCIDRBlocks:
+        Description: List of CIDR blocks of private subnets
+        Value: !Join
+        - ","
+        - [!Ref PrivateSubnet1CIDR, !Ref PrivateSubnet2CIDR]
+
+    PrivateRouteTableAssociationIDs:
+        Description: List of IDs of the private route table associations
+        Value: !Join
+        - ","
+        - [!Ref PrivateSubnet1RouteAssociation, !Ref PrivateSubnet2RouteAssociation]
