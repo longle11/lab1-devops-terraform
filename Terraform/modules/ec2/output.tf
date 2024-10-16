@@ -30,6 +30,7 @@ output "public_ip" {
   )
 }
 
+
 output "private_ip" {
   description = "The private IP address assigned to the instance"
   value = try(

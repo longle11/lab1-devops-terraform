@@ -12,6 +12,14 @@ variable "key_name" {
   default     = null
 }
 
+
+variable "associate_public_ip" {
+  description = "(Optional) Whether to associate a public IP address with an instance in a VPC."
+  type        = bool
+  default     = false
+}
+
+
 variable "monitoring" {
   description = "If true, the launched EC2 instance will have detailed monitoring enabled"
   type        = bool

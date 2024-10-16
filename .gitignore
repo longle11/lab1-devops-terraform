@@ -1,2 +1,6 @@
-evironments/staging/.terraform/*
-evironments/staging/.terraform/terraform.lock.hcl
+Terraform/evironments/staging/.terraform/*
+Terraform/evironments/staging/.terraform/terraform.lock.hcl
+Terraform/evironments/staging/.terraform/keypair.pem
+Cloudformation/subnet.yml
+Cloudformation/vpc.yml
+.gitignore

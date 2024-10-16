@@ -15,6 +15,8 @@ module "staging_vpc" {
       cidr_block        = "192.168.20.0/24"
     }
   }
+  map_public_ip_on_launch = true
+  map_public_ip_on_launch_private = false
 
   private_subnets = {
     first_private_subnet = {

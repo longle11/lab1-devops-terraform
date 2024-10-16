@@ -53,29 +53,6 @@ resource "aws_route_table_association" "vpc_route_association_public_subnet" {
   route_table_id = aws_route_table.vpc_route_table_public[each.key].id
 }
 
-# #AWS Security Group
-# resource "aws_security_group" "vpc_security_group" {
-#   name   = var.vpc_security_group_name
-#   vpc_id = aws_vpc.vpc.id
-
-#   #ssh access from vpc
-#   ingress {
-#     from_port   = 22
-#     to_port     = 22
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-
-#   egress {
-#     from_port   = 0
-#     to_port     = 0
-#     protocol    = "-1"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-#   tags = {
-#     Environment = var.environment
-#   }
-# }
 ################################################################################
 # Nat Gateway
 ################################################################################
@@ -91,7 +68,7 @@ resource "aws_eip" "eip" {
 
 resource "aws_nat_gateway" "nat_gateway" {
   allocation_id = aws_eip.eip.id
-  subnet_id     = aws_subnet.vpc_public_subnet[0].id
+  subnet_id     = aws_subnet.vpc_public_subnet["first_public_subnet"].id
 
   tags = {
     Name        = "gateway NAT",
@@ -99,25 +76,8 @@ resource "aws_nat_gateway" "nat_gateway" {
     CreatedBy   = var.createdBy
   }
 
-  # To ensure proper ordering, it is recommended to add an explicit dependency
-  # on the Internet Gateway for the VPC.
-  depends_on = [aws_internet_gateway.vpc_igw]
+  depends_on = [aws_eip.eip]
 }
-
-# resource "aws_route_table" "private_instance_to_natgateway" {
-#   vpc_id = aws_vpc.vpc.id
-#   route {
-#     cidr_block     = "0.0.0.0/0"
-#     nat_gateway_id = aws_nat_gateway.nat_gateway.id
-#   }
-# }
-
-# resource "aws_route_table_association" "instance" {
-#   subnet_id      = aws_subnet.vpc_private_subnet.id
-#   route_table_id = aws_route_table.private_instance_to_natgateway.id
-
-#   depends_on = [aws_subnet.vpc_private_subnet]
-# }
 
 
 ################################################################################
@@ -149,7 +109,7 @@ resource "aws_route_table" "vpc_route_table_private" {
 }
 
 resource "aws_route" "vpc_route_private" {
-  for_each = aws_route_table.vpc_route_table_private
+  for_each               = aws_route_table.vpc_route_table_private
   route_table_id         = each.value.id
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = aws_nat_gateway.nat_gateway.id
@@ -161,4 +121,33 @@ resource "aws_route_table_association" "vpc_route_association_private_subnet" {
 
   subnet_id      = each.value.id
   route_table_id = aws_route_table.vpc_route_table_private[each.key].id
+}
+
+################################################################################
+# Default security group
+################################################################################
+
+
+resource "aws_security_group" "default_myvpc" {
+  description = "Default Security Group for VPC"
+  vpc_id      = aws_vpc.vpc.id
+
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1" 
+    cidr_blocks = [var.cidr_block_vpc] 
+  }
+
+  // Quy tắc Egress cho phép tất cả lưu lượng ra ngoài
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1" 
+    cidr_blocks = ["0.0.0.0/0"]  
+  }
+
+  tags = {
+    Name = "Default Security Group"
+  }
 }
