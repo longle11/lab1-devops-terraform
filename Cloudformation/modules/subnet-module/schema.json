@@ -1,6 +1,6 @@
 {
-    "typeName": "Group3::Subnet::MySubnet::MODULE",
-    "description": "Schema for Module Fragment of type Group3::Subnet::MySubnet::MODULE",
+    "typeName": "Group33::Subnet::MySubnet::MODULE",
+    "description": "Schema for Module Fragment of type Group33::Subnet::MySubnet::MODULE",
     "properties": {
         "Parameters": {
             "type": "object",

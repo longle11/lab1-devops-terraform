@@ -1,6 +1,6 @@
 {
-    "typeName": "Group3::SecurityGroup::MySG::MODULE",
-    "description": "Schema for Module Fragment of type Group3::SecurityGroup::MySG::MODULE",
+    "typeName": "Group33::SG::MySG::MODULE",
+    "description": "Schema for Module Fragment of type Group33::SG::MySG::MODULE",
     "properties": {
         "Parameters": {
             "type": "object",
@@ -19,7 +19,7 @@
                         "Type",
                         "Description"
                     ],
-                    "description": "id of vpc"
+                    "description": "the id of vpc"
                 },
                 "CreateBy": {
                     "type": "object",

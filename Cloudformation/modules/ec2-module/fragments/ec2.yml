@@ -26,8 +26,8 @@ Parameters:
     Description: The VPC Subnet ID to launch in
     Type: String
   VpcSecurityGroupIds:
-    Description: A list of security group IDs to associate with
-    Type: List<String>
+    Description: A security group IDs to associate with
+    Type: String
   AmiID:
     Description: The ID of the AMI
     Type: AWS::EC2::Image::Id
@@ -45,11 +45,12 @@ Resources:
       InstanceType: !Ref InstanceType
       KeyName: !Ref KeyName
       Monitoring: !If [isMonitoring, true, false]
-      SecurityGroupIds: !Ref VpcSecurityGroupIds
       NetworkInterfaces:
         - AssociatePublicIpAddress: !Ref AssociatePublicIP
           SubnetId: !Ref SubnetID
           DeviceIndex: '0'
+          GroupSet:
+            - !Ref VpcSecurityGroupIds
       Tags:
         - Key: Name
           Value: !Ref EC2Name

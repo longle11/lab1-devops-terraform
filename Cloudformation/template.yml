@@ -8,24 +8,26 @@ Parameters:
   KeyName:
     Description: Key name of the Key Pair to use for the instance; which can be managed using the `aws_key_pair` resource
     Type: String
+    Default: group3keykey
   AmiID:
     Description: The ID of the AMI
     Type: AWS::EC2::Image::Id
+    Default: ami-06b21ccaeff8cd686
 Resources:
   Vpc:
-    Type: "Group3::VPC::MyVPC::MODULE"
+    Type: Group33::VPC::MyVPC::MODULE
     Properties:
-      VpcCIDR: "10.0.0.0/16"
+      VpcCIDR: "10.3.0.0/16"
       EnableDNSHostnameVPC: "true"
       EnableDNSSupportVPC: "true"
       InstanceTenancy: "default"
       CreateBy: !Ref CreateBy
 
   PublicSecurityGroup:
-    Type: Group3::SecurityGroup::MySG::MODULE
-    Properties: 
-      GroupDescription: Only ssh from local machine 
-      VpcID: !GetAtt Vpc.VpcID
+    Type: Group33::SG::MySG::MODULE
+    Properties:
+      GroupDescription: Only ssh from local machine
+      VpcID: !Ref Vpc.VPC
       CreateBy: !Ref CreateBy
       FromPort: 22
       ToPort: 22
@@ -33,123 +35,107 @@ Resources:
       IpProtocol: tcp
 
   PrivateSecurityGroup:
-    Type: Group3::SecurityGroup::MySG::MODULE
-    Properties: 
+    Type: Group33::SG::MySG::MODULE
+    Properties:
       GroupDescription: Only ssh from public subnet A
-      VpcID: !GetAtt Vpc.VpcID
+      VpcID: !Ref Vpc.VPC
       CreateBy: !Ref CreateBy
       FromPort: 22
       ToPort: 22
-      CidrIp: !GetAtt Vpc.PublicSubnetACidrBlock
+      CidrIp: !GetAtt Vpc.publicSubnetA.Subnet.CidrBlock
       IpProtocol: tcp
 
   PublicEc2:
-    Type: "Group3::EC2::MyEC2::MODULE"
+    Type: Group33::EC2::MyEC2::MODULE
     Properties:
       InstanceType: "t2.nano"
       AssociatePublicIP: "true"
       Monitoring: "true"
       CreateBy: !Ref CreateBy
       KeyName: !Ref KeyName
-      SubnetID: !GetAtt Vpc.PublicSubnetAID
-      VpcSecurityGroupIds:
-        - !GetAtt PublicSecurityGroup.SecurityGroupID
+      SubnetID: !Ref Vpc.publicSubnetA.Subnet
+      VpcSecurityGroupIds: !Ref PublicSecurityGroup.SecurityGroup
       AmiID: !Ref AmiID
       EC2Name: public ec2
 
   PrivateEc2:
-    Type: "Group3::EC2::MyEC2::MODULE"
+    Type: Group33::EC2::MyEC2::MODULE
     Properties:
       InstanceType: "t2.nano"
       AssociatePublicIP: "false"
       Monitoring: "false"
       CreateBy: !Ref CreateBy
       KeyName: !Ref KeyName
-      SubnetID: !GetAtt Vpc.PrivateSubnetAID
-      VpcSecurityGroupIds:
-        - !GetAtt PrivateSecurityGroup.SecurityGroupID
+      SubnetID: !Ref Vpc.publicSubnetA.Subnet
+      VpcSecurityGroupIds: !Ref PrivateSecurityGroup.SecurityGroup
       AmiID: !Ref AmiID
       EC2Name: private ec2
 
-
-
-Outputs:
+Outputs: 
   VpcID:
     Description: The ID of the VPC
-    Value: !GetAtt Vpc.VpcID
+    Value: !Ref Vpc.VPC
 
   PublicSecurityGroupID:
     Description: The ID of the public security group
-    Value: !GetAtt PublicSecurityGroup.SecurityGroupID
+    Value: !Ref PublicSecurityGroup.SecurityGroup
 
   PrivateSecurityGroupID:
     Description: The ID of the private security group
-    Value: !GetAtt PrivateSecurityGroup.SecurityGroupID
-
-  PublicEc2ID:
-    Description: The ID of the public EC2 instance
-    Value: !GetAtt PublicEc2.InstanceID
-
-  PrivateEc2ID:
-    Description: The ID of the private EC2 instance
-    Value: !GetAtt PrivateEc2.InstanceID
+    Value: !Ref PrivateSecurityGroup.SecurityGroup
 
   AmiID:
     Description: The ID of the AMI used
     Value: !Ref AmiID
 
-  VpcInstanceTenancy:
-    Description: Tenancy of instances spun up within VPC
-    Value: !GetAtt Vpc.InstanceTenancy
-
   VpcCIDRBlock:
     Description: The CIDR block of the VPC
-    Value: !GetAtt Vpc.CidrBlock
+    Value: !GetAtt Vpc.VPC.CidrBlock
 
   PublicSubnetAID:
     Description: The ID of public subnet A
-    Value: !GetAtt Vpc.PublicSubnetAID
+    Value: !GetAtt Vpc.publicSubnetA.Subnet.SubnetId
 
   PublicSubnetBID:
     Description: The ID of public subnet B
-    Value: !GetAtt Vpc.PublicSubnetBID
+    Value: !GetAtt Vpc.publicSubnetB.Subnet.SubnetId
 
   PrivateSubnetAID:
     Description: The ID of private subnet A
-    Value: !GetAtt Vpc.PrivateSubnetAID
-  
-  PublicSubnetACidrBlock:
-    Value: !GetAtt Vpc.PublicSubnetACidrBlock
-    
-  PublicSubnetBCidrBlock:
-    Value: !GetAtt Vpc.PublicSubnetBCidrBlock
-
-  PrivateSubnetACidrBlock:
-    Value: !GetAtt Vpc.PrivateSubnetACidrBlock
-
-  PrivateSubnetBCidrBlock:
-    Value: !GetAtt Vpc.PrivateSubnetBCidrBlock
+    Value: !GetAtt Vpc.privateSubnetA.Subnet.SubnetId
 
   PrivateSubnetBID:
     Description: The ID of private subnet B
-    Value: !GetAtt Vpc.PrivateSubnetBID
+    Value: !GetAtt Vpc.privateSubnetB.Subnet.SubnetId
+
+  PublicSubnetACidrBlock:
+    Description: The CIDR of public subnet A
+    Value: !GetAtt Vpc.publicSubnetA.Subnet.CidrBlock
+
+  PublicSubnetBCidrBlock:
+    Description: The CIDR of public subnet B
+    Value: !GetAtt Vpc.publicSubnetB.Subnet.CidrBlock
+
+  PrivateSubnetACidrBlock:
+    Description: The CIDR of private subnet A
+    Value: !GetAtt Vpc.privateSubnetA.Subnet.CidrBlock
+
+  PrivateSubnetBCidrBlock:
+    Description: The CIDR of private subnet B
+    Value: !GetAtt Vpc.privateSubnetB.Subnet.CidrBlock
 
   NatGatewayID:
     Description: Contains the NAT Gateway ID
-    Value: !GetAtt Vpc.NatGatewayID
+    Value: !Ref Vpc.NATGateway
 
   NatPublicIP:
     Description: The Elastic IP address associated with the NAT Gateway
-    Value: !GetAtt Vpc.NatPublicIP
+    Value: !GetAtt Vpc.EipNatgateway.PublicIp
 
   EIPID:
     Description: Contains the EIP allocation ID
-    Value: !GetAtt Vpc.EipNatgateway
-
-  EIPPublicIP:
-    Description: Contains the public IP address
-    Value: !GetAtt Vpc.EIPPublicIP
+    Value: !Ref Vpc.EipNatgateway
 
   IGWID:
     Description: The ID of the Internet Gateway
-    Value: !GetAtt Vpc.IGWID
+    Value: !Ref Vpc.InternetGateway

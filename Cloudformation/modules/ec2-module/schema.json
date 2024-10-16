@@ -1,6 +1,6 @@
 {
-    "typeName": "Group3::EC2::MyEC2::MODULE",
-    "description": "Schema for Module Fragment of type Group3::EC2::MyEC2::MODULE",
+    "typeName": "Group33::EC2::MyEC2::MODULE",
+    "description": "Schema for Module Fragment of type Group33::EC2::MyEC2::MODULE",
     "properties": {
         "Parameters": {
             "type": "object",
@@ -115,7 +115,7 @@
                         "Type",
                         "Description"
                     ],
-                    "description": "A list of security group IDs to associate with"
+                    "description": "A security group IDs to associate with"
                 },
                 "AmiID": {
                     "type": "object",

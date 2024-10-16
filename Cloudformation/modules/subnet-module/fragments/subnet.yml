@@ -55,7 +55,7 @@ Resources:
         Type: AWS::EC2::Subnet
         Properties:
             AvailabilityZone: !Select [!Ref AzIndex, !GetAZs '']
-            CidrBlock: !Select [!Ref SubnetIndex, !Cidr [!Ref VpcCidrBlock, !Ref SubnetCount, 24]]
+            CidrBlock: !Select [!Ref SubnetIndex, !Cidr [!Ref VpcCidrBlock, !Ref SubnetCount, 12]]
             MapPublicIpOnLaunch: !If [IsPublicIp, true, false]
             VpcId: !Ref VpcID
             Tags: 
@@ -63,10 +63,12 @@ Resources:
                 Value: !Sub '${AzAvailabilityZones} ${PublicOrPrivate} subnet'
               - Key: CreateBy
                 Value: !Ref CreateBy
+
     SubnetRouteTable:
         Type: AWS::EC2::RouteTable
         Properties:
             VpcId: !Ref VpcID
+
     SubnetRouteAttachInternetGateway:
         Type: AWS::EC2::Route
         Condition: IsPublic
@@ -74,6 +76,7 @@ Resources:
             DestinationCidrBlock: 0.0.0.0/0
             GatewayId: !Ref InternetGatewayId
             RouteTableId: !Ref SubnetRouteTable
+
     SubnetRouteAttachNatGateway:
         Type: AWS::EC2::Route
         Condition: IsPrivate
@@ -81,7 +84,6 @@ Resources:
             DestinationCidrBlock: 0.0.0.0/0
             NatGatewayId: !Ref NatGatewayId
             RouteTableId: !Ref SubnetRouteTable
-
 
     SubnetRouteAssociation:
         Type: AWS::EC2::SubnetRouteTableAssociation
@@ -91,10 +93,6 @@ Resources:
 Outputs:
     SubnetId:
         Description: id of subnet
-        Value: !Ref Subnet
-
-    SubnetArn:
-        Description: arn of subnet
         Value: !Ref Subnet
 
     SubnetsCIDRBlocks:

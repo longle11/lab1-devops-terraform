@@ -1,6 +1,6 @@
 {
-    "typeName": "Group3::VPC::MyVPC::MODULE",
-    "description": "Schema for Module Fragment of type Group3::VPC::MyVPC::MODULE",
+    "typeName": "Group33::VPC::MyVPC::MODULE",
+    "description": "Schema for Module Fragment of type Group33::VPC::MyVPC::MODULE",
     "properties": {
         "Parameters": {
             "type": "object",
@@ -130,7 +130,7 @@
                     "properties": {
                         "Type": {
                             "type": "string",
-                            "const": "Group3::Subnet::MySubnet::MODULE"
+                            "const": "Group33::Subnet::MySubnet::MODULE"
                         },
                         "Properties": {
                             "type": "object"
@@ -142,7 +142,7 @@
                     "properties": {
                         "Type": {
                             "type": "string",
-                            "const": "Group3::Subnet::MySubnet::MODULE"
+                            "const": "Group33::Subnet::MySubnet::MODULE"
                         },
                         "Properties": {
                             "type": "object"
@@ -178,7 +178,7 @@
                     "properties": {
                         "Type": {
                             "type": "string",
-                            "const": "Group3::Subnet::MySubnet::MODULE"
+                            "const": "Group33::Subnet::MySubnet::MODULE"
                         },
                         "Properties": {
                             "type": "object"
@@ -190,7 +190,7 @@
                     "properties": {
                         "Type": {
                             "type": "string",
-                            "const": "Group3::Subnet::MySubnet::MODULE"
+                            "const": "Group33::Subnet::MySubnet::MODULE"
                         },
                         "Properties": {
                             "type": "object"

@@ -54,74 +54,71 @@ Resources:
             InternetGatewayId: !Ref InternetGateway
 
     publicSubnetA:
-        Type: Group3::Subnet::MySubnet::MODULE
+        Type: Group33::Subnet::MySubnet::MODULE
         Properties:
-            VpcId: !Ref VPC
+            VpcID: !Ref VPC
             VpcCidrBlock: !GetAtt VPC.CidrBlock
             InternetGatewayId: !Ref InternetGateway
             NatGatewayId: ""
             PublicOrPrivate: public
             MapOnLaunchPublicIp: "true"
-            AZIndex: 0
+            AzIndex: 0
             AzAvailabilityZones: A
             SubnetIndex: 0
             SubnetCount: 4
             CreateBy: !Ref CreateBy
 
     publicSubnetB:
-        Type: Group3::Subnet::MySubnet::MODULE
+        Type: Group33::Subnet::MySubnet::MODULE
         Properties:
-            VpcId: !Ref VPC
+            VpcID: !Ref VPC
             VpcCidrBlock: !GetAtt VPC.CidrBlock
             InternetGatewayId: !Ref InternetGateway
             NatGatewayId: ""
             PublicOrPrivate: public
             MapOnLaunchPublicIp: "true"
-            AZIndex: 0
+            AzIndex: 0
             AzAvailabilityZones: B
             SubnetIndex: 1
             SubnetCount: 4
             CreateBy: !Ref CreateBy
-
 
     EipNatgateway:
         Type: AWS::EC2::EIP
         Properties:
             Domain: vpc
 
-
     NATGateway:
         Type: AWS::EC2::NatGateway
         Properties:
             AllocationId: !GetAtt EipNatgateway.AllocationId
-            SubnetId: !Ref publicSubnetA
-
+            SubnetId: !GetAtt publicSubnetA.Subnet.SubnetId
    
     privateSubnetA:
-        Type: Group3::Subnet::MySubnet::MODULE
+        Type: Group33::Subnet::MySubnet::MODULE
         Properties:
-            VpcId: !Ref VPC
+            VpcID: !Ref VPC
             VpcCidrBlock: !GetAtt VPC.CidrBlock
             InternetGatewayId: ""
             NatGatewayId: !Ref NATGateway
             PublicOrPrivate: private
             MapOnLaunchPublicIp: "false"
-            AZIndex: 0
+            AzIndex: 0
             AzAvailabilityZones: A
             SubnetIndex: 2
             SubnetCount: 4
             CreateBy: !Ref CreateBy
 
     privateSubnetB:
-        Type: Group3::Subnet::MySubnet::MODULE
+        Type: Group33::Subnet::MySubnet::MODULE
         Properties:
-            VpcId: !Ref VPC
+            VpcID: !Ref VPC
             VpcCidrBlock: !GetAtt VPC.CidrBlock
             InternetGatewayId: ""
             NatGatewayId: !Ref NATGateway
             PublicOrPrivate: private
             MapOnLaunchPublicIp: "false"
-            AZIndex: 0
+            AzIndex: 0
             AzAvailabilityZones: B
             SubnetIndex: 3
             SubnetCount: 4
@@ -140,31 +137,34 @@ Outputs:
     VpcCIDRBlock:
         Description: The CIDR block of the VPC
         Value: !GetAtt VPC.CidrBlock
-
+        
     PublicSubnetAID:
         Description: The id of public subnet A
-        Value: !Ref publicSubnetA
-
+        Value: !GetAtt publicSubnetA.Subnet.SubnetId
+        
     PublicSubnetBID:
         Description: The id of public subnet B
-        Value: !Ref publicSubnetB
+        Value: !GetAtt publicSubnetB.Subnet.SubnetId
 
     PrivateSubnetAID:
         Description: The id of private subnet A
-        Value: !Ref privateSubnetA
+        Value: !GetAtt privateSubnetA.Subnet.SubnetId
 
     PrivateSubnetBID:
         Description: The id of private subnet B
-        Value: !Ref privateSubnetB
+        Value: !GetAtt privateSubnetB.Subnet.SubnetId
 
     PublicSubnetACidrBlock:
-        Value: !GetAtt publicSubnetB.CidrBlock
+        Value: !GetAtt publicSubnetA.Subnet.CidrBlock
+
     PublicSubnetBCidrBlock:
-        Value: !GetAtt publicSubnetB.CidrBlock
+        Value: !GetAtt publicSubnetB.Subnet.CidrBlock
+
     PrivateSubnetACidrBlock:
-        Value: !GetAtt PrivateSubnetB.CidrBlock
+        Value: !GetAtt privateSubnetA.Subnet.CidrBlock
+
     PrivateSubnetBCidrBlock:
-        Value: !GetAtt PrivateSubnetB.CidrBlock
+        Value: !GetAtt privateSubnetB.Subnet.CidrBlock
 
     VpcEnableDnsSupport:
         Description: Whether or not the VPC has DNS support
@@ -178,10 +178,6 @@ Outputs:
         Description: Contains the NAT Gateway ID
         Value: !Ref NATGateway
 
-
-    NatPublicIP:
-        Description: The Elastic IP address associated with the NAT Gateway
-        Value: !GetAtt EipNatgateway.PublicIp
 
     EIPID:
         Description: Contains the EIP allocation ID
