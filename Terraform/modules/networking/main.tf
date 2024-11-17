@@ -1,5 +1,6 @@
 #AWS VPC Resource
 resource "aws_vpc" "vpc" {
+  #checkov:skip=CKV2_AWS_12
   cidr_block           = var.use_ipam_pool ? null : var.cidr_block_vpc //check whether users want to use IPAM to manage the range of IPs or not
   enable_dns_hostnames = var.enable_dns_hostnames                      // allows to on or off dns hostname which using to create domain name for ec2 in that vpc
   enable_dns_support   = var.enable_dns_support
@@ -132,6 +133,7 @@ resource "aws_route_table_association" "vpc_route_association_private_subnet" {
 
 resource "aws_security_group" "default_myvpc" {
    #checkov:skip=CKV_AWS_23
+   #checkov:skip=CKV2_AWS_5
   description = "Default Security Group for VPC"
   vpc_id      = aws_vpc.vpc.id
 

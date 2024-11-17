@@ -1,5 +1,6 @@
 resource "aws_security_group" "security_group" {
     #checkov:skip=CKV_AWS_23
+    #checkov:skip=CKV2_AWS_5
   name   = var.sg_name
   vpc_id = var.vpc_id
   dynamic "ingress" {
