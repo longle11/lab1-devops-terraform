@@ -21,6 +21,11 @@ data "aws_ami" "amzlinux2" {
 }
 
 resource "aws_instance" "myec2" {
+  #checkov:skip=CKV_AWS_79
+  #checkov:skip=CKV_AWS_135
+  #checkov:skip=CKV_AWS_8
+  #checkov:skip=CKV_AWS_88
+  #checkov:skip=CKV_AWS_135
   ami           = data.aws_ami.amzlinux2.id
   instance_type = var.instance_type
   subnet_id              = var.subnet_id

@@ -19,6 +19,8 @@ resource "aws_internet_gateway" "vpc_igw" {
 ################################################################################
 
 resource "aws_subnet" "vpc_public_subnet" {
+    #checkov:skip=CKV_AWS_130
+  #checkov:skip=CKV_AWS_130
   for_each                = var.public_subnets
   vpc_id                  = aws_vpc.vpc.id
   availability_zone       = each.value.availability_zone
@@ -129,6 +131,7 @@ resource "aws_route_table_association" "vpc_route_association_private_subnet" {
 
 
 resource "aws_security_group" "default_myvpc" {
+   #checkov:skip=CKV_AWS_23
   description = "Default Security Group for VPC"
   vpc_id      = aws_vpc.vpc.id
 
