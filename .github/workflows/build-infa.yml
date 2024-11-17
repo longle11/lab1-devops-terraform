@@ -59,14 +59,14 @@ jobs:
 
       - name: Terraform plan
         id: plan
-        if: github.ref !== 'refs/heads/main' || github.event_name == 'pull_request'
+        # if: github.ref != 'refs/heads/main' || github.event_name == 'pull_request'
         run: |
           terraform plan -no-color -input=false
         working-directory: ${{ env.WORKING_DIRECTORY }}
 
       - name: Post Terraform Plan output
         uses: actions/github-script@v6
-        if: (github.ref !== 'refs/heads/main' || github.event_name == 'pull_request') && steps.plan.outcome == 'sucess'
+        # if: (github.ref != 'refs/heads/main' || github.event_name == 'pull_request') && steps.plan.outcome == 'sucess'
         env:
           PLAN: "${{ steps.plan.outputs.stdout }}"
         with:
@@ -93,6 +93,6 @@ jobs:
             })
 
       - name: Terraform apply
-        if: github.ref !== 'refs/heads/main' && github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true && steps.apply.outcome == 'success'
+        # if: github.ref != 'refs/heads/main' && github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true && steps.apply.outcome == 'success'
         run: terraform apply -auto-approve
         working-directory: ${{ env.WORKING_DIRECTORY }}
