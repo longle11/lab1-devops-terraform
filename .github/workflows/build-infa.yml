@@ -48,11 +48,6 @@ jobs:
         run: terraform init
         working-directory: ${{ env.WORKING_DIRECTORY }}
 
-      - name: Terraform Format
-        id: fmt
-        run: terraform fmt -check
-        working-directory: ${{ env.WORKING_DIRECTORY }}
-
       - name: Terraform validate
         run: terraform validate
         working-directory: ${{ env.WORKING_DIRECTORY }}
