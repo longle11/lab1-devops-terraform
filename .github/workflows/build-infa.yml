@@ -1,10 +1,14 @@
 name: "Terraform"
 on:
   push:
-    branches: ["dev"]
-    # paths:
-    #   - "Terraform/modules/environments/staging/*"
-permissions: read-all
+    branches: ["main"]
+  workflow_dispatch:
+permissions:
+  id-token: write
+  contents: read
+  issues: write
+  pull-requests: write
+  actions: write
 jobs:
   terraform:
     name: "Terraform"
@@ -12,12 +16,25 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.SC_AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{secrets.SC_AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: ${{ secrets.SC_AWS_REGION }}
+      AWS_SESSION_TOKEN: ${{ secrets.SC_AWS_SESSION_TOKEN }}
       WORKING_DIRECTORY: "./Terraform/environments/staging"
     runs-on: ubuntu-latest
     # Checkout the repository to the GitHub Actions runner
     steps:
       - name: "checkout"
         uses: "actions/checkout@v3"
+
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.8
+
+      - name: Test with Checkov
+        id: checkov
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: ${{ env.WORKING_DIRECTORY }}
+          framework: terraform
 
       - name: List files in repository
         run: ls -la
@@ -29,16 +46,53 @@ jobs:
 
       - name: Terraform init
         run: terraform init
-        working-directory: ${{ env.WORKING_DIRECTORY }} 
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+
+      - name: Terraform Format
+        id: fmt
+        run: terraform fmt -check
+        working-directory: ${{ env.WORKING_DIRECTORY }}
 
       - name: Terraform validate
         run: terraform validate
-        working-directory: ${{ env.WORKING_DIRECTORY }} 
+        working-directory: ${{ env.WORKING_DIRECTORY }}
 
       - name: Terraform plan
-        run: terraform plan
-        working-directory: ${{ env.WORKING_DIRECTORY }} 
+        id: plan
+        if: github.ref !== 'refs/heads/main' || github.event_name == 'pull_request'
+        run: |
+          terraform plan -no-color -input=false
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+
+      - name: Post Terraform Plan output
+        uses: actions/github-script@v6
+        if: (github.ref !== 'refs/heads/main' || github.event_name == 'pull_request') && steps.plan.outcome == 'sucess'
+        env:
+          PLAN: "${{ steps.plan.outputs.stdout }}"
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `#### Terraform Format and Style 📝\`${{ steps.fmt.outcome }}\`
+            #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
+            #### Terraform Plan 📋\`${{ steps.plan.outcome }}\`
+            #### Terraform Validation ✅\`${{ steps.validate.outcome }}\`
+
+              <details><summary>Show Plan</summary>
+
+              \`\`\`
+              ${process.env.PLAN}
+              \`\`\`
+
+              </details>
+
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: output
+            })
 
       - name: Terraform apply
+        if: github.ref !== 'refs/heads/main' && github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true && steps.apply.outcome == 'success'
         run: terraform apply -auto-approve
-        working-directory: ${{ env.WORKING_DIRECTORY }} 
+        working-directory: ${{ env.WORKING_DIRECTORY }}
